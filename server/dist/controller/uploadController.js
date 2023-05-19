@@ -17,18 +17,20 @@ const cloudinarySetup_1 = __importDefault(require("../utils/cloudinarySetup"));
 const uploadRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const result = yield cloudinarySetup_1.default.uploader.upload((_a = req.file) === null || _a === void 0 ? void 0 : _a.path, {
-            folder: "image-uploader",
-            resource_type: "auto",
-        });
-        const body = {
-            id: req.body.id,
-            name: req.body.name,
-            filepath: result.secure_url,
-        };
-        const fileDetails = new modal_1.default(body);
-        yield fileDetails.save();
-        res.status(200).send(fileDetails);
+        if (req.file) {
+            const result = yield cloudinarySetup_1.default.uploader.upload((_a = req.file) === null || _a === void 0 ? void 0 : _a.path, {
+                folder: "image-uploader",
+                resource_type: "auto",
+            });
+            const body = {
+                id: req.body.id,
+                filepath: result.secure_url,
+            };
+            const fileDetails = new modal_1.default(body);
+            yield fileDetails.save();
+            console.log(fileDetails);
+            res.status(200).send(fileDetails);
+        }
     }
     catch (err) {
         console.log(err);

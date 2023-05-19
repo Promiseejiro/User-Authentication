@@ -6,10 +6,6 @@ const schema = new mongoose_1.Schema({
         type: String,
         default: "",
     },
-    discription: {
-        type: String,
-        default: "",
-    },
     filepath: {
         type: String,
         default: "",
