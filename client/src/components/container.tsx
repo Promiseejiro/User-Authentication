@@ -53,7 +53,7 @@ const Container = () => {
           : e.target.files[0];
         console.log(imagefile);
         formdata.append("filepath", imagefile);
-        const res = await axios.post("http://localhost:2000/upload", formdata, {
+        const res = await axios.post("https://image-uploader-api-3.onrender.com/upload", formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
