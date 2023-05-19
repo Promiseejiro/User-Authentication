@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Image uploader}</h1>
+<h1 align="center">Image uploader</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -38,7 +38,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 - [React](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
-- [nodejs and Express]
+- nodejs and Express
 
 ## Features
 
@@ -62,11 +62,13 @@ $ cd server
 $ npm install
 # Run the app
 $ npm run dev
-```
+
 for client 
 $ cd client
 $ npm install
 $ npm start
+```
+
 
 ## Acknowledgements
 
