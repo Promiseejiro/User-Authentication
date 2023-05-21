@@ -8,7 +8,7 @@ interface Idb {
   useUnifiedTopology: boolean;
 }
 
-const connectDb = (url: string) => {
+const connectDb = (url: any) => {
   return mongoose
     .connect(url, {})
     .then(() => {
