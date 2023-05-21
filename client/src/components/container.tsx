@@ -79,7 +79,7 @@ const Container = () => {
   };
   const copyHandler = () => {
     navigator.clipboard.writeText(`${currentState.imageUrl}`);
-    setCurrentState({ ...currentState, title: "Copied" });
+    setCurrentState({ ...currentState, title: "Copied!" });
   };
   return (
     <div className="main_container bg-white m-4 p-6 rounded">
