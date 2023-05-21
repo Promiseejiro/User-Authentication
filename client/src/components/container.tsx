@@ -12,6 +12,8 @@ interface CurrentStep {
   percent: Number;
   previewText: String;
 }
+
+const base_url = "https://image-uploader-api-gyz5.onrender.com";
 const Container = () => {
   //states
   const [currentState, setCurrentState] = useState<CurrentStep>({
@@ -53,7 +55,7 @@ const Container = () => {
           : e.target.files[0];
         console.log(imagefile);
         formdata.append("filepath", imagefile);
-        const res = await axios.post("https://image-uploader-api-3.onrender.com/upload", formdata, {
+        const res = await axios.post(`${base_url}/upload`, formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

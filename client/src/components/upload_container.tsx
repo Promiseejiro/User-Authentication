@@ -18,7 +18,7 @@ function Upload_Container({ onChangeHandler }: changeFunc) {
 
   return (
     <div
-      className="w-full"
+      className="w-full "
       onDragEnter={handleDragStart}
       onDragLeave={handleDragEnd}
     >
@@ -26,7 +26,7 @@ function Upload_Container({ onChangeHandler }: changeFunc) {
       <p className="text-center my-4 font-[300] text-[12px]">
         File should be jpeg,jpg or png...
       </p>
-      <div className="full w-full border-2 border-dashed border-blue-700 rounded bg-[#f7f8fc] p-4">
+      <div className="full w-full border-2 border-dashed border-blue-700 rounded bg-[#f7f8fc] p-4 relative" >
         <div className="flex justify-center">
           <div>
             <img
@@ -52,7 +52,7 @@ function Upload_Container({ onChangeHandler }: changeFunc) {
         <div>
           <label
             htmlFor="file"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-[500] py-2 px-4 rounded-md"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-[500] py-2 px-4 rounded-md "
           >
             Choose a file
           </label>
