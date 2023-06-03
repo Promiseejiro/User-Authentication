@@ -26,5 +26,5 @@ app.use("/", router);
 
 app.listen(port, () => {
   connectDb("mongodb+srv://promise:4128@cluster0.x9stvxh.mongodb.net/");
-  console.log('Server started on port 2000');
+  console.log(`Server started on port ${port}`);
 });
