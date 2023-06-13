@@ -43,14 +43,8 @@ progress {
   height: 10px;
 }
 
-progress::-webkit-progress-bar {
-  background-color: #fff;
-}
-progress::-webkit-progress-value {
-  background-color: #3b82f6;
-}
-progress::-moz-progress-bar {
-  background-color: #fff;
+.a{
+  text-decoration: none;
 }
 
 .main_container {

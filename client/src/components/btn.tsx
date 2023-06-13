@@ -1,11 +1,24 @@
-interface text{
+interface Text{
   title: String;
-  onclickHandler:any
+  color: string;
+  bgColor: String;
+  borderColor: String;
+  borderRadius: string;
+  width: string;
+  height:string;
+  onclickHandler:any;
+  icon:any
 }
-
-function Btn ({title,onclickHandler}:text){
+const  Btn =({title,onclickHandler,color,bgColor,borderColor,borderRadius,width,icon, height}:Text) =>{
   return (
-<button  className="bg-blue-500 hover:bg-blue-700 text-white font-[400] py-2 px-4 rounded " onClick={onclickHandler}> {title}</button>
+<button  className={`flex items-center justify-center hover:bg-blue-70 font-[400] focus:outline-none`} onClick={onclickHandler} style={{
+  backgroundColor:`${bgColor}`,
+  borderRadius:`${borderRadius}`,
+  color:`${color}`,
+  border:`2px solid ${borderColor}`,
+  width:`${width}`,
+  height:`${height}`
+}}>{icon} {title}</button>
 )
 }
 export default Btn

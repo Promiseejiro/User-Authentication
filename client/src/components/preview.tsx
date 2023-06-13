@@ -10,7 +10,7 @@ interface text {
 function ImagePreview({ imageUrl, onclickHandler, title }: text) {
   return (
     <div>
-      <div className="flex justify-center">
+      {/*<div className="flex justify-center">
         <AiOutlineCheckCircle className="bg-[green]  rounded-full p-0 text-[white]"></AiOutlineCheckCircle>
       </div>
       <Header title="Uploaded Successfully" />
@@ -21,7 +21,7 @@ function ImagePreview({ imageUrl, onclickHandler, title }: text) {
           {imageUrl}
         </p>{" "}
         <Btn title={title} onclickHandler={onclickHandler} />
-      </div>
+      </div>*/}
     </div>
   );
 }

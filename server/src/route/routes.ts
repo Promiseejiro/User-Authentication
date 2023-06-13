@@ -1,117 +1,93 @@
 import express from "express";
 import passport from "passport";
+import Mailer from "../utils/nodemailer";
 const router = express.Router();
+import User from "../modal/modal";
+import authenticate from "../middleware/authentication";
+import passportStragetiesConfig from "../config/config"
+import * as controller from "../controller/auth"
 //import upload from "../utils/multer";
-// * as controller from "../controller/auth";
-const GitHubStrategy = require('passport-github2').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
-const TwitterStrategy = require('passport-twitter').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+passportStragetiesConfig(passport)
 //strategies config
-
 //GoogleStrategy
-passport.use(new GoogleStrategy({
+/*passport.use(new GoogleStrategy({
     clientID: "161165475594-olso0o49a0dibh391f2aha8cf47dk7nf.apps.googleusercontent.com",
     clientSecret: "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",
     callbackURL: "http://localhost:2000/auth/google/callback"
   },
-  function(accessToken:any, refreshToken:any, profile:any, done:any) {
-    console.log(profile)
+async (accessToken:any, refreshToken:any, profile:any, cb:any) =>{
+  try{
+      const user = await User.create({
+        email:profile.emails[0].value,
+      password:"passwordhhh",
+       bio:"",
+      name: profile.displayName,
+      profileUrl: profile.photos[0].value,
+    })
+    console.log(user)
+  cb(null, user)
+  }catch(erro){
+    console.log(erro)
   }
-));
-
-
-//GitHubStrategy
-passport.use(new GitHubStrategy({
-    clientID: "da57dd355874c6f4790b",
-    clientSecret: "c049e291855f3f7ebce2b04c8b612437d3730096",
-    callbackURL: "http://localhost:2000/auth/github/callback"
-  },
-  function(accessToken:any, refreshToken:any, profile:any, done:any) {
-    console.log(profile)
-  }
-));
-
-
-
-passport.use(new TwitterStrategy({
-    consumerKey: "u6HMvVjImWdPDihxsC3tgoDBw",
-    consumerSecret: "Y0vQXohP3GqB22e8F2eoRNKMatDlf08JxcVmv5Ot9gh3lXFZZz",
-    callbackURL: "http:localhost:2000/auth/twitter/callback"
-  },
-  function(accessToken:any, refreshToken:any, profile:any, done:any) {
-    console.log(profile)
-  }
-));
-passport.use(new FacebookStrategy({
-    clientID: "640549644612277",
-    clientSecret: "eaa49820ff8ff4918c4d55e49a14de91",
-    callbackURL: "http://localhost:2000/auth/facebook/callback",
- //   passReqToCallback : true,
-      // profileFields: ['emails']
-  },
-    function(accessToken:any, refreshToken:any, profile:any, done:any) {
-   console.log(profile);
-   console.log("successful")
-  }
-));
-
-//strategies
-//require("../controller/google");
-
+}
+))*/
 ///GitHub 
-router.route('/auth/github').get(passport.authenticate('github'));
-router.route('/auth/github/callback').get(
-    passport.authenticate('github', { failureRedirect: '/NotFound',
-       successRedirect: '/success',
-    }));
-    
-    
+router.get('/auth/github',passport.authenticate('github'))
+router.get('/auth/github/callback',
+    passport.authenticate('github', { failureRedirect: 'http://localhost:2000/NotFound'}),
+(req:any, res:any) => {
+   res.redirect(`http://localhost:2000/success?email=${req.user.email}`);
+  })
+  
     //twitter 
-   router.route('/auth/twitter').get(
+   router.get('/auth/twitter',
   passport.authenticate('twitter'));
-
-router.route('/auth/twitter/callback').get( 
-  passport.authenticate('twitter', { failureRedirect: '/NotFound',
-    successRedirect: '/success', })
-  );
-
+router.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: 'http://localhost:2000/NotFound'}),
+(req:any, res:any) => {
+ // console.log(req.user)
+    res.redirect(`http://localhost:2000/success?email=${req.user.email}`);
+  });
 //google
 router.route("/auth/google").get(
   passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
+      ['email', 'profile' ] }
 ));
-router.route("/auth/google/callback").get( 
-    passport.authenticate( 'google', {
-        failureRedirect: '/NotFound',
-        successRedirect: '/success',
-}));
-
+router.route("/auth/google/callback").get(
+	passport.authenticate("google", {
+		failureRedirect: 'http://localhost:2000/NotFound'}),
+(req:any, res:any) => {
+    res.redirect(`/success`);
+  });
 //Facebook 
-router.route('/auth/facebook').get(
+router.get('/auth/facebook',
   passport.authenticate('facebook'));
-
-router.route('/auth/facebook/callback').get(
+router.get('/auth/facebook/callback',
   passport.authenticate('facebook', 
   {
-    failureRedirect: '/NotFound',
-    successRedirect: '/success',
-  }
-  ))
+    failureRedirect: 'http://localhost:2000/NotFound'}),
+(req:any, res:any) => {
+ // console.log(req.user)
+    res.redirect(`http://localhost:2000/success?email=${req.user.email}`);
+  });
 
 //GitHub end 
 //strategies 
-/*
-router.route("/register").post(controller.register)
+router.route("/check").get((req:any,res:any)=>{
+res.send({message:"successfully"});
+});
+router.route("/success").get((req:any,res:any)=>{
+//console.log(req.userExist);
+res.send({message:"successfully"});
+});
+router.route("/register").post(controller.signUp);
 router.route("/login").post(controller.login);
-router.route("/verify").post(controller.emailVerification);
-*/
+router.route("/edit").post(authenticate, controller.updateUser);
+router.route("/setpassword").post(controller.setpassword);
+router.route("/user").get(authenticate, controller.getAuthenticatedUser)
+router.route("/:id").get(controller.verifyAccount);
 router.route("/NotFound").post((req:any,res:any)=>{
   res.send("no user found")
-})
-
-router.route("/success").get((req:any,res:any)=>{
-  res.send("successful login");
 });
 
 

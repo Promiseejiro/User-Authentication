@@ -22,7 +22,7 @@ function Upload_Container({ onChangeHandler }: changeFunc) {
       onDragEnter={handleDragStart}
       onDragLeave={handleDragEnd}
     >
-      <Header title="Upload your image" />
+ {/*     <Header title="Upload your image" />
       <p className="text-center my-4 font-[300] text-[12px]">
         File should be jpeg,jpg or png...
       </p>
@@ -57,7 +57,7 @@ function Upload_Container({ onChangeHandler }: changeFunc) {
             Choose a file
           </label>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 }

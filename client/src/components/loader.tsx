@@ -8,8 +8,8 @@ interface progressValue {
 function Loader({ percent, previewTeXt }: progressValue) {
   return (
     <div>
-      <Header title={`${previewTeXt}`}></Header>
-      <progress max="100" value={percent}></progress>
+  {/*    <Header title={`${previewTeXt}`}></Header>
+      <progress max="100" value={percent}></progress>*/}
     </div>
   );
 }

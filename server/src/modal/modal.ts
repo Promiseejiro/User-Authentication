@@ -1,25 +1,51 @@
 import { Schema, model, connect } from "mongoose";
 
-interface IUpload {
-  id: string;
-  filepath: string;
-  discription: string;
+interface User {
+  email:String,
+  password: any,
+  name: String,
+  phone:Number,
+  profileUrl: String,
+  bio: String,
+  verified:Boolean,
 }
 
-const schema = new Schema<IUpload>(
+const schema = new Schema<User>(
   {
-    id: {
+    email: {
       type: String,
-      default: "",
+      required:true,
+   //   unique:true
     },
-    filepath: {
+    password: {
       type: String,
-      default: "",
+      required:true,
+      default:"password"
     },
+    
+    name: {
+      type: String,
+      default:"Edit user name"
+    },
+    bio: {
+      type: String,
+      default:"No bio stated yet"
+    },
+    phone: {
+      type: Number,
+      default:0
+    },
+    profileUrl:{
+      type: String,
+      default:""
+    },
+    verified:{
+      type: Boolean,
+      default:false
+    }
   },
   { timestamps: true }
 );
 
-const uploadSchema = model<IUpload>("image-uploader", schema);
-
-export default uploadSchema;
+const User = model<User>("Userysbgghh-ghhuhhttygyyghyyhhhthcate", schema);
+export default User;
