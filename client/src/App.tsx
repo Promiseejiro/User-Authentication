@@ -17,7 +17,7 @@ function App() {
   }
   return (
     <div
-      className="App bg-[#f4f4f4]  h-full w-full">
+      className="App bg-[#f4f4f4]  h-full w-full  md">
       <Router > <Routes>
       <Route path="/" element={ <Register />}>
       </Route>

@@ -33,11 +33,16 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
             else {
                 const hashedpassword = yield bcryptjs_1.default.hash(password, 10);
-                const newUser = yield modal_1.default.create({ email: email, password: hashedpassword });
+                const newUser = yield modal_1.default.create({
+                    email: email,
+                    password: hashedpassword,
+                });
                 const verificationUrl = yield `http://localhost:2000/${newUser._id}`;
                 console.log(verificationUrl);
                 (0, nodemailer_1.default)(email, "Account verification", verificationUrl);
-                res.status(200).send({ message: "A verification mail has been sent to your email account please verify email account." });
+                res.status(200).send({
+                    message: "A verification mail has been sent to your email account please verify email account.",
+                });
             }
         }
         else {
@@ -46,7 +51,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     else {
         res.send({
-            message: "Input email and password"
+            message: "Input email and password",
         });
     }
 });
@@ -60,7 +65,12 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         //check permission
         if (user._id == req.user.userId) {
             const updatedUser = yield modal_1.default.findOneAndUpdate({ _id: req.user.userId }, {
-                email: email, password: hashedpassword, bio: bio, phone: phone, name: name, profileUrl: profileUrl
+                email: email,
+                password: hashedpassword,
+                bio: bio,
+                phone: phone,
+                name: name,
+                profileUrl: profileUrl,
             }, {
                 new: true,
                 runValidators: true,
@@ -87,14 +97,17 @@ const verifyAccount = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.verifyAccount = verifyAccount;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = yield req.body;
+    console.log(email, password);
     if (email && password) {
         const user = yield modal_1.default.findOne({ email: email });
+        console.log(user);
         if (user) {
             console.log(user.password);
             const passwordMatch = yield bcryptjs_1.default.compare(password, user.password);
             if (passwordMatch) {
                 const token = jsonwebtoken_1.default.sign({ userId: user._id, email: user.email }, "your_secret_key", { expiresIn: "30d" });
-                res.send({ token });
+                console.log(token);
+                res.send({ token: token });
             }
             else {
                 res.send({ message: "Invalid password" });
@@ -110,18 +123,10 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const getAuthenticatedUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.user) {
-        console.log(req.user.userId);
-        const user = yield modal_1.default.findOne({ _id: req.user.userId });
-        console.log(user);
-        res.send({ user: user });
-    }
-    else {
-        res.send({ message: "user details couldn't be fetch"
-        });
-    }
+    const user = yield modal_1.default.findOne({ _id: req.user.userId });
+    console.log(user);
+    res.send({ user: user });
 });
 exports.getAuthenticatedUser = getAuthenticatedUser;
-const setpassword = (req, res) => {
-};
+const setpassword = (req, res) => { };
 exports.setpassword = setpassword;

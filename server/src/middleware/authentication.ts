@@ -58,26 +58,37 @@ export default authenticate
 */
 import express from "express";
 import jwt from "jsonwebtoken";
-const authenticate = async (req: express.Request, res:express.Response, next:any) => {
-  const authHeader =await req.headers['authorization'];
-if(!authHeader){
-  res.send({message:"no token sent"})
-}else{
-  const token =await authHeader && authHeader.split(' ')[1];
-  if (!token) {
-    res.send({message:"invalid token"})
-  }
-  try {
-  /*  const decodedToken = jwt.verify(token, 'your_secret_key');
-  req.user = {userId:decodedToken.userId, email:decodedToken.email}*/
-    next();
-  } catch (error) {
-    return res.send({message:"Invalid token"});
-  }
-}
+
+interface decodedToken {
+  userId: string;
+  email: string;
 }
 
-export default authenticate
+const authenticate = async (
+  req: express.Request,
+  res: express.Response,
+  next: any
+) => {
+  const authHeader = await req.headers["authorization"];
+  if (!authHeader) {
+    res.send({ message: "no token sent" });
+  } else {
+    const token = (await authHeader) && authHeader.split(" ")[1];
+    if (!token) {
+      res.send({ message: "invalid token" });
+    }
+    try {
+      const decodedToken = jwt.verify(token, "your_secret_key");
+      console.log(decodedToken);
+      req.user = decodedToken;
+      next();
+    } catch (error) {
+      return res.send({ message: "Invalid token" });
+    }
+  }
+};
+
+export default authenticate;
 /*function authenticate(req:express.Request, res:express.Response, next:any) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -94,4 +105,3 @@ const payload = jwt.verify(token, 'your_secret_key', (err:any, user:any) => {
     next();
   });
 }*/
-

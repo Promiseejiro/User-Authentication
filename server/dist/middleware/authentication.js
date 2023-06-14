@@ -8,20 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authenticate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const authHeader = yield req.headers['authorization'];
+    const authHeader = yield req.headers["authorization"];
     if (!authHeader) {
         res.send({ message: "no token sent" });
     }
     else {
-        const token = (yield authHeader) && authHeader.split(' ')[1];
+        const token = (yield authHeader) && authHeader.split(" ")[1];
         if (!token) {
             res.send({ message: "invalid token" });
         }
         try {
-            /*  const decodedToken = jwt.verify(token, 'your_secret_key');
-            req.user = {userId:decodedToken.userId, email:decodedToken.email}*/
+            const decodedToken = jsonwebtoken_1.default.verify(token, "your_secret_key");
+            console.log(decodedToken);
+            req.user = decodedToken;
             next();
         }
         catch (error) {

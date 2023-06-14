@@ -33,5 +33,5 @@ const schema = new mongoose_1.Schema({
         default: false
     }
 }, { timestamps: true });
-const User = (0, mongoose_1.model)("Userysbgghh-ghhuhhttygyyghyyhhhthcate", schema);
+const User = (0, mongoose_1.model)("Userysbgghh-ghhuhhttygyyghyyhkkhhthcate", schema);
 exports.default = User;
