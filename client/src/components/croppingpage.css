@@ -1,0 +1,50 @@
+.CroppingPage-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cropping-container{
+  position:relative;
+width:100%;
+height:100%;
+overflow: hidden;
+}
+
+.cropping-image{
+  width:100%;
+  height:auto;
+}
+
+.CroppingPage-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;
+  top:0;
+  z-index: 2;
+ background-color: rgba(0,0,0,.4)
+}
+
+.CroppingPage-footer{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.CroppingPage-input{
+  display:none;
+}
+.lense{
+  position:absolute;
+  z-index: 5;
+  left:0;
+  top:0;
+}
+
+.element-being-resized{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 360px 360px;
+  background-position: 0px 0px;
+}

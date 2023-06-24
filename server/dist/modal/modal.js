@@ -4,12 +4,12 @@ const mongoose_1 = require("mongoose");
 const schema = new mongoose_1.Schema({
     email: {
         type: String,
-        required: true,
+        //required:true,
         //   unique:true
     },
     password: {
         type: String,
-        required: true,
+        //required:true,
         default: "password"
     },
     name: {
@@ -33,5 +33,5 @@ const schema = new mongoose_1.Schema({
         default: false
     }
 }, { timestamps: true });
-const User = (0, mongoose_1.model)("Userysbgghh-ghhuhhttygyyghyyhkkhhthcate", schema);
+const User = (0, mongoose_1.model)("Usery", schema);
 exports.default = User;

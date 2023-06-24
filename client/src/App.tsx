@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage"
 import EditPage from "./pages/Editpage"
 import Register from "./pages/register"
 import Dashboard from "./pages/dashboard"
+import Resizer from "./components/Size"
+import CroppingPage from "./components/Croppingpage"
 function App() {
  
   const check=async()=>{
@@ -15,12 +17,21 @@ function App() {
       alert(err)
     }
   }
+  
+  
+  const resizerFunc =(left:Number,top:Number, height:Number,width:Number)=>{
+    
+  }
+  
   return (
     <div
       className="App bg-[#f4f4f4]  h-full w-full  md">
       <Router > <Routes>
+      <Route path="crop"element={<CroppingPage/>}></Route>
       <Route path="/" element={ <Register />}>
       </Route>
+   {/*   <Route path="/size" element={ <Resizer resizerFunc={resizerFunc}/>}>
+      </Route>*/}
       <Route path="/login" element={ <LoginPage />}>
       </Route>
       <Route path="/dashboard" element={ <Dashboard/>}>

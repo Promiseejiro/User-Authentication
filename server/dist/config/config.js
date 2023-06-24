@@ -24,33 +24,24 @@ const passportStragetiesConfig = (passport) => {
         callbackURL: "http://localhost:2000/auth/google/callback",
     }, function (accessToken, refreshToken, profile, done) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let user = yield modal_1.default.findOne({
-                    email: profile.emails[0].value,
-                });
-                if (user) {
-                    modal_1.default.findOne({ googleId: profile.id }, function (err, user) {
-                        console.log("user experience");
-                        console.log(user);
-                        return done(err, user);
-                    });
-                }
-                else {
-                    user = yield modal_1.default.create({
-                        email: profile.emails[0].value,
-                        password: "passwordhhh",
-                        bio: "greater",
-                        phone: 1290,
-                        name: profile.displayName,
-                        profileUrl: profile.photos[0].value,
-                        verified: true,
-                    });
-                    // return done(null, user);
-                }
-            }
-            catch (erro) {
-                console.log(erro);
-            }
+            /*   let user = await User.findOne({
+                 email: profile.emails[0].value,
+               });
+               if (user) {
+                 return done(null, user);
+               } else {
+                 user = await User.create({
+                   email: profile.emails[0].value,
+                   password: "passwordhhh",
+                   bio: "greater",
+                   phone: 1290,
+                   name: profile.displayName,
+                   profileUrl: profile.photos[0].value,
+                   verified: true,
+                 });
+                 // return done(null, user);
+               }*/
+            return done(null, profile);
         });
     }));
     //GitHubStrategy

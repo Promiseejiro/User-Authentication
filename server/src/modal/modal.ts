@@ -14,12 +14,12 @@ const schema = new Schema<User>(
   {
     email: {
       type: String,
-      required:true,
+      //required:true,
    //   unique:true
     },
     password: {
       type: String,
-      required:true,
+      //required:true,
       default:"password"
     },
     
@@ -47,5 +47,5 @@ const schema = new Schema<User>(
   { timestamps: true }
 );
 
-const User = model<User>("Userysbgghh-ghhuhhttygyyghyyhkkhhthcate", schema);
+const User = model<User>("Usery", schema);
 export default User;

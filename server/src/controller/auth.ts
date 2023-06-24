@@ -52,6 +52,7 @@ export const updateUser = async (
   const hashedpassword = await bcrypt.hash(password, 10);
   const user = await User.findOne({ _id: req.user.userId });
   if (user) {
+    
     //check permission
     if (user._id == req.user.userId) {
       const updatedUser = await User.findOneAndUpdate(
@@ -126,5 +127,4 @@ export const getAuthenticatedUser = async (
   console.log(user);
   res.send({ user: user });
 };
-
 export const setpassword = (req: express.Request, res: express.Response) => {};

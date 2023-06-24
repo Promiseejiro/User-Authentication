@@ -19,19 +19,11 @@ const passportStragetiesConfig = (passport: any) => {
         profile: any,
         done: any
       ) {
-        try {
-          let user = await User.findOne({
+       /*   let user = await User.findOne({
             email: profile.emails[0].value,
           });
           if (user) {
-            User.findOne(
-              { googleId: profile.id },
-              function (err: any, user: any) {
-                console.log("user experience");
-                console.log(user);
-                return done(err, user);
-              }
-            );
+            return done(null, user);
           } else {
             user = await User.create({
               email: profile.emails[0].value,
@@ -43,14 +35,12 @@ const passportStragetiesConfig = (passport: any) => {
               verified: true,
             });
             // return done(null, user);
-          }
-        } catch (erro) {
-          console.log(erro);
-        }
+          }*/
+          
+return done (null,profile);
       }
     )
   );
-
   //GitHubStrategy
   passport.use(
     new GitHubStrategy(
@@ -120,6 +110,7 @@ const passportStragetiesConfig = (passport: any) => {
       }
     )
   );
+
 
   passport.use(
     new FacebookStrategy(
