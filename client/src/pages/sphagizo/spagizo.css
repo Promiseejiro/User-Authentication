@@ -1,0 +1,80 @@
+.spagizo-main-wrapper{
+  background-color: #f4f4f4;
+}
+
+p{
+  text-align: center;
+  color:#fff;
+  padding: 1rem ;
+}
+
+.spagizo-header{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 12rem;
+}
+
+.spagizo-header-overlay{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 3;
+  background-color: rgba(0,0,0,.8);
+}
+
+.spagizo-header >img{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left:0;
+  top: 0;
+  z-index: 1;
+}
+
+.spagizo-header-label{
+  text-align: center;
+  font-weight: 600;
+  font-size: 30px;
+  color: orange;
+}
+
+.generate-dp-container{
+  position:relative;
+  margin:2rem 0;
+}
+
+.CroppingPage-input-label{
+  padding:.5rem .5rem;
+  display: block;
+  background-color: #3fe35d;
+  color:#fff;
+  border-radius: 5px;
+}
+
+.dp-avarta{
+  width: 100%;
+  height: auto;
+  z-index:6;
+}
+
+.dp-form{
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
+.input-controller{
+  display: block;
+  width: 100%;
+  border-radius:5px;
+  margin :.6rem 0;
+}
+
+input{
+  width:100%;
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  border:2px solid rgba(0,0,0,.3);
+}

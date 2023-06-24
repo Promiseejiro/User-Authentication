@@ -1,7 +1,6 @@
 import react,{useState,useEffect,useRef,RefObject} from "react"
-
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import {Link } from "react-router-dom"
+//import {Link } from "react-router-dom"
 import "./croppingpage.css";
 import Resizer from "./Size"
 
@@ -43,32 +42,33 @@ if(defaultSizeContainerRef.current){
   
   const onChangeHandler =  (e: any) => {
       if (e.target.files) {
+        if(defaultSizeContainerRef.current){
         const imagefile = e.target.files[0];
         setCropImageDetails({...cropImagedetails,imageFile:URL.createObjectURL(e.target.files[0])})
-      }
-    if(defaultSizeContainerRef.current){
+    alert(URL.createObjectURL(e.target.files[0]))
      /*   setCropImageDetails({...cropImagedetails,width:defaultSizeContainerRef.current.getBoundingClientRect().width,
           height:defaultSizeContainerRef.current.getBoundingClientRect().height
         })*/
         /*alert(defaultSizeContainerRef.current.getBoundingClientRect().width)*/
         alert(defaultSizeContainerRef.current.getBoundingClientRect().height)
-        
+      }
       }
     }
-   /* useEffect(()=>{
-     setCropImageDetails({
+   useEffect(()=>{
+     const url = localStorage.getItem("image")
+     alert (url)
+    setCropImageDetails({
         ...cropImagedetails,
-        width:0,
-        height:0
+        imageFile:url
       })
-    },[fileSelected])*/
+    },[fileSelected])
   return (
   <div className="cropping-container-wrapper">
   <div className="CroppingPage-main-container">
   <div className="CroppingPage-header">
-  <Link to="#"><AiOutlineArrowLeft/></Link>
+ {/* <Link to="#"><AiOutlineArrowLeft/></Link>
   <h1>Crop photo</h1>
-  <Link to="#">Done</Link>
+  <Link to="#">Done</Link>*/}
   </div>
   <div className="cropping-container"ref={defaultSizeContainerRef}>
  <img src={ cropImagedetails.imageFile} className="cropping-image"/>

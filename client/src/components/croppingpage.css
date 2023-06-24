@@ -45,6 +45,7 @@ overflow: hidden;
 .element-being-resized{
   background-size: contain;
   background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: 360px 360px;
   background-position: 0px 0px;
 }

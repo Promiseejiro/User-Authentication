@@ -549,7 +549,7 @@ if (resizer.left) {
           left: `${defaultSizeContainer.x}px`,
           top: `${defaultSizeContainer.y}px`,
           opacity: 1,
-          backgroundPosition:"59px 69px",
+          backgroundPosition:"center",
           backgroundSize:"360px 360px"
         }}
         onTouchStart={touchStart}
