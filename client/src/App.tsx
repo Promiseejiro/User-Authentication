@@ -8,6 +8,7 @@ import EditPage from "./pages/Editpage"
 import Register from "./pages/register"
 import Dashboard from "./pages/dashboard"
 import Resizer from "./components/Size"
+import Setup from "./pages/setup/setup"
 import CroppingPage from "./components/Croppingpage"
 function App() {
  
@@ -18,17 +19,11 @@ function App() {
       alert(err)
     }
   }
-  
-  
-  const resizerFunc =(left:Number,top:Number, height:Number,width:Number)=>{
-    
-  }
-  
   return (
     <div
       className="App bg-[#f4f4f4]  h-full w-full  md">
       <Router > <Routes>
-      
+      <Route element={<Setup/>} path="new"></Route>
       <Route path="sp" element={<Spagizo/>}></Route>
       <Route path="/crop"element={<CroppingPage/>}></Route>
       

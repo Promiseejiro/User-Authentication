@@ -347,7 +347,8 @@ const Resizer = ({resizerFunc,backgroundurl,positionY,positionX,backgroundWidth,
     }
           }
       }
-      
+      localStorage.setItem("cropx",`${defaultSizeContainer.left}`)
+      localStorage.setItem("cropy",`${defaultSizeContainer.top}`)
     resizerFunc(defaultSizeContainer.left,defaultSizeContainer.top,defaultSizeContainer.height,defaultSizeContainer.width)
     }
  
@@ -537,7 +538,7 @@ if (resizer.left) {
       }}
       style={{
         position:"absolute",
-        backgroundImage:`url("${backgroundurl}")`
+      //  backgroundImage:`url("${backgroundurl}")`
       }}
     >
       <div
@@ -549,8 +550,10 @@ if (resizer.left) {
           left: `${defaultSizeContainer.x}px`,
           top: `${defaultSizeContainer.y}px`,
           opacity: 1,
-          backgroundPosition:"center",
-          backgroundSize:"360px 360px"
+     backgroundImage:`url("${backgroundurl}")`,
+     backgroundPosition:`${((Number(defaultSizeContainer.left)+19) / 360 ) *100}% ${((Number(defaultSizeContainer.top) +10) / 360 ) *100}%`,
+          backgroundSize:"360px 360px",
+          borderRadius:"50%"
         }}
         onTouchStart={touchStart}
         onTouchEnd={touchEnd}
@@ -567,9 +570,10 @@ if (resizer.left) {
           height: `${defaultSizeContainer.height}px`,
           left: `${defaultSizeContainer.x}px`,
           top: `${defaultSizeContainer.y}px`,
-          backgroundImage:`url("${backgroundurl}")`,
-        backgroundPosition:`${positionX}px ${positionY}px`,
-          backgroundSize:`${backgroundWidth}px ${backgroundHeight}px`
+          backgroundImage:`url("https://res.cloudinary.com/dxqg5hify/image/upload/v1687681552/hnxd4pdm2oiald20sk9m.jpg")`,
+        backgroundPosition:`${positionX}% ${positionY}%`,
+          backgroundSize:`${backgroundWidth}px ${backgroundHeight}px`,
+          borderRadius:"50%"
         }}
         onDrag={(e) => e.preventDefault()}
       ></div>

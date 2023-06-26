@@ -1,9 +1,9 @@
 import react,{useState,useEffect,useRef,RefObject} from "react"
+import { useNavigate,Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 //import {Link } from "react-router-dom"
 import "./croppingpage.css";
 import Resizer from "./Size"
-
 type ContainerRefType = RefObject<HTMLDivElement>
 interface CropImagedetails{
   imageFile:any;
@@ -14,10 +14,13 @@ interface CropImagedetails{
   positionY:Number;
 }
 const CroppingPage=()=>{
+  const navigate =useNavigate()
+  const url = localStorage.getItem("image")
+  
   const defaultSizeContainerRef: ContainerRefType =
     useRef<HTMLDivElement>(null);
       const [cropImagedetails,setCropImageDetails]=useState<CropImagedetails>({
-    imageFile:"",
+    imageFile:url,
     width:0,
     height:0,
     positionY:0,
@@ -27,13 +30,12 @@ const CroppingPage=()=>{
   });
     
   const resizeFunc=(left:Number,top:Number,height:Number,width:Number)=>{
-  
-if(defaultSizeContainerRef.current){
+/*if(defaultSizeContainerRef.current){
       setCropImageDetails({...cropImagedetails,positionX:left,positionY:top,
         backgroundWidth:defaultSizeContainerRef.current.getBoundingClientRect().width,
         backgroundHeight:defaultSizeContainerRef.current.getBoundingClientRect().height
       })
-   }
+   }*/
   }
   
 
@@ -55,8 +57,8 @@ if(defaultSizeContainerRef.current){
       }
     }
    useEffect(()=>{
-     const url = localStorage.getItem("image")
-     alert (url)
+     
+     
     setCropImageDetails({
         ...cropImagedetails,
         imageFile:url
@@ -66,9 +68,9 @@ if(defaultSizeContainerRef.current){
   <div className="cropping-container-wrapper">
   <div className="CroppingPage-main-container">
   <div className="CroppingPage-header">
- {/* <Link to="#"><AiOutlineArrowLeft/></Link>
+ <Link to="/sp"><AiOutlineArrowLeft/></Link>
   <h1>Crop photo</h1>
-  <Link to="#">Done</Link>*/}
+  <Link to="#">Done</Link>
   </div>
   <div className="cropping-container"ref={defaultSizeContainerRef}>
  <img src={ cropImagedetails.imageFile} className="cropping-image"/>

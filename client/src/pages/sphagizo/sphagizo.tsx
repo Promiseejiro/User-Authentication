@@ -2,9 +2,22 @@ import react,{useState,useEffect,} from "react"
 import { useNavigate } from "react-router-dom";
 
 import "./spagizo.css"
-
+interface Position {
+  positionX: string;
+  positionY: string;
+  url: string;
+}
 const Spagizo =()=>{
+ /* const cropx=localStorage.getItem("cropx") ? localStorage.getItem("cropx") :"0"
+  const cropy=localStorage.getItem("cropy") ? localStorage.getItem("cropy"):"0"*/
+  const url = localStorage.getItem("image") ? localStorage.getItem("image") :""
+  alert(url)
   const navigate =useNavigate()
+ /* const [positionX,positionY] =useState<Position>({
+    //positionx:"0",
+   // positionY:"0",
+   // url:`${url}`
+  })*/
   const [name,setname]=useState<string>("")
   
   const onChange =(e:any)=>{
@@ -12,7 +25,7 @@ const Spagizo =()=>{
   }
     const changeFile =  (e: any) => {
       if (e.target.files) {
-localStorage.setItem("image",e.target.files[0])
+localStorage.setItem("image", URL.createObjectURL(e.target.files[0]))
        navigate("/crop")
         }
     }
